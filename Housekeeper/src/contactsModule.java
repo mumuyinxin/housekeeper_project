@@ -1,75 +1,82 @@
 //每个联系人模块
 public class contactsModule {
-	private int UserId;
+	private int userId;
+	private int contactsId;
 	private int friendId;
 	private int friendGroupId;//联系人群组Id
 	private String friendName;
-	
-	private contactsModule() {
+	private contactsModule_friendGroup contactsModule_friendGroup;
+	private contactsModule_friend contactsModule_friend;
+	public contactsModule() {
 
 	}
-
-	private contactsModule(int userId, int friendId, int friendGroupId, String friendName) {
-		this.UserId = userId;
+	
+	public contactsModule(int userId, int contactsId) {
+		this.userId = userId;
+		this.contactsId = contactsId;
+	}
+	
+	public contactsModule(int userId, int friendId, int friendGroupId, String friendName) {
+		this.userId = userId;
 		this.friendId = friendId;
 		this.friendGroupId = friendGroupId;
 		this.friendName = friendName;
 	}
 
-	/**
-	 * @return userId
-	 */
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
-	/**
-	 * @param userId 要设置的 userId
-	 */
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
-	/**
-	 * @return friendId
-	 */
+	public int getContactsId() {
+		return contactsId;
+	}
+
+	public void setContactsId(int contactsId) {
+		this.contactsId = contactsId;
+	}
+
 	public int getFriendId() {
 		return friendId;
 	}
 
-	/**
-	 * @param friendId 要设置的 friendId
-	 */
 	public void setFriendId(int friendId) {
 		this.friendId = friendId;
 	}
 
-	/**
-	 * @return friendGroupId
-	 */
 	public int getFriendGroupId() {
 		return friendGroupId;
 	}
 
-	/**
-	 * @param friendGroupId 要设置的 friendGroupId
-	 */
 	public void setFriendGroupId(int friendGroupId) {
 		this.friendGroupId = friendGroupId;
 	}
 
-	/**
-	 * @return friendName
-	 */
 	public String getFriendName() {
 		return friendName;
 	}
 
-	/**
-	 * @param friendName 要设置的 friendName
-	 */
 	public void setFriendName(String friendName) {
 		this.friendName = friendName;
+	}
+
+	public contactsModule_friendGroup getContactsModule_friendGroup() {
+		return contactsModule_friendGroup;
+	}
+
+	public void setContactsModule_friendGroup() {
+		this.contactsModule_friendGroup = new contactsModule_friendGroup(this.friendGroupId);
+	}
+
+	public contactsModule_friend getContactsModule_friend() {
+		return contactsModule_friend;
+	}
+
+	public void setContactsModule_friend() {
+		this.contactsModule_friend = new contactsModule_friend(this.friendId);
 	}
 
 	

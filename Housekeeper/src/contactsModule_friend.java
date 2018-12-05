@@ -2,9 +2,12 @@
 public class contactsModule_friend {
 	private int friendId;
 	private String friendName;
-	private contactsModule_friend() {
+	public contactsModule_friend() {
 	}
-	private contactsModule_friend(int friendId, String friendName) {
+	public contactsModule_friend(int friendId) {
+		this.friendId = friendId;
+	}
+	public contactsModule_friend(int friendId, String friendName) {
 		this.friendId = friendId;
 		this.friendName = friendName;
 	}

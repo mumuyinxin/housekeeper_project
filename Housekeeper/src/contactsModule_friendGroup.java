@@ -1,9 +1,14 @@
 public class contactsModule_friendGroup {
 	private int friendGroupId;//所有联系人群组Id
 	private int friendGroupName;//联系人群组名称
-	private contactsModule_friendGroup() {
+	public contactsModule_friendGroup() {
 	}
-	private contactsModule_friendGroup(int friendGroupId, int friendGroupName) {
+	
+	public contactsModule_friendGroup(int friendGroupId) {
+		this.friendGroupId = friendGroupId;
+	}
+	
+	public contactsModule_friendGroup(int friendGroupId, int friendGroupName) {
 		this.friendGroupId = friendGroupId;
 		this.friendGroupName = friendGroupName;
 	}

@@ -1,75 +1,73 @@
 //设置模块
 public class setModule {
-	private int UserId;
+	private int userId;
 	private int setId;
 	private int userDataId;//设置-用户详细资料Id
-	private int moneyId;//钱袋子Id
-	private int ManageAppId;//设置-管理应用Id
-	private setModule() {
+	private int manageAppId;//设置-管理应用Id
+	private setModule_UserData setModule_UserData;
+	private setModule_ManageApp setModule_ManageApp;
+	
+	public setModule() {
+	}
+	
+	public setModule(int userId, int setId) {
+		this.userId = userId;
+		this.setId = setId;
 	}
 
-	private setModule(int userId, int setId, int userDataId, int moneyId, int manageAppId) {
-		this.UserId = userId;
+	public setModule(int userId, int setId, int userDataId, int manageAppId) {
+		this.userId = userId;
 		this.setId = setId;
 		this.userDataId = userDataId;
-		this.moneyId = moneyId;
-		this.ManageAppId = manageAppId;
+		this.manageAppId = manageAppId;
 	}
 
-	/**
-	 * @return setId
-	 */
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public int getSetId() {
 		return setId;
 	}
-	/**
-	 * @param setId 要设置的 setId
-	 */
+
 	public void setSetId(int setId) {
 		this.setId = setId;
 	}
-	/**
-	 * @return userDataId
-	 */
+
 	public int getUserDataId() {
 		return userDataId;
 	}
-	/**
-	 * @param userDataId 要设置的 userDataId
-	 */
+
 	public void setUserDataId(int userDataId) {
 		this.userDataId = userDataId;
 	}
-	/**
-	 * @return moneyId
-	 */
-	public int getMoneyId() {
-		return moneyId;
-	}
-	/**
-	 * @param moneyId 要设置的 moneyId
-	 */
-	public void setMoneyId(int moneyId) {
-		this.moneyId = moneyId;
-	}
-	/**
-	 * @return manageAppId
-	 */
+
 	public int getManageAppId() {
-		return ManageAppId;
+		return manageAppId;
 	}
-	/**
-	 * @param manageAppId 要设置的 manageAppId
-	 */
+
 	public void setManageAppId(int manageAppId) {
-		ManageAppId = manageAppId;
+		this.manageAppId = manageAppId;
 	}
-	public int getUserId() {
-		return UserId;
+
+	public setModule_UserData getSetModule_UserData() {
+		return setModule_UserData;
 	}
-	public void setUserId(int userId) {
-		UserId = userId;
+
+	public void setSetModule_UserData() {
+		this.setModule_UserData = new setModule_UserData(this.userDataId);
 	}
-	
+
+	public setModule_ManageApp getSetModule_ManageApp() {
+		return setModule_ManageApp;
+	}
+
+	public void setSetModule_ManageApp() {
+		this.setModule_ManageApp = new setModule_ManageApp(this.manageAppId);
+	}
 	
 }

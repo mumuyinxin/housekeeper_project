@@ -1,94 +1,64 @@
 
 public class setModule_UserData {
-	private int UserId;
-	private int UserNum;//用户账号
-	private String UserName;
-	private String UserSex;
-	private String UserPhone;
-	private int UserAge;
-	private setModule_UserData() {
+	private int userId;
+	private int userNum;//用户账号
+	private String userName;
+	private String userSex;
+	private String userPhone;
+	private int userAge;
+	public setModule_UserData() {
 	}
-	private setModule_UserData(int userId, int userNum, String userName, String userSex, String userPhone,
-			int userAge) {
-		UserId = userId;
-		UserNum = userNum;
-		UserName = userName;
-		UserSex = userSex;
-		UserPhone = userPhone;
-		UserAge = userAge;
+	
+	public setModule_UserData(int userId) {
+		this.userId = userId;
 	}
-	/**
-	 * @return userId
-	 */
+	
+	public setModule_UserData(int userId, int userNum, String userName, String userSex, String userPhone, int userAge) {
+		super();
+		this.userId = userId;
+		this.userNum = userNum;
+		this.userName = userName;
+		this.userSex = userSex;
+		this.userPhone = userPhone;
+		this.userAge = userAge;
+	}
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
-	/**
-	 * @param userId 要设置的 userId
-	 */
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
-	/**
-	 * @return userNum
-	 */
 	public int getUserNum() {
-		return UserNum;
+		return userNum;
 	}
-	/**
-	 * @param userNum 要设置的 userNum
-	 */
 	public void setUserNum(int userNum) {
-		UserNum = userNum;
+		this.userNum = userNum;
 	}
-	/**
-	 * @return userName
-	 */
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
-	/**
-	 * @param userName 要设置的 userName
-	 */
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
-	/**
-	 * @return userSex
-	 */
 	public String getUserSex() {
-		return UserSex;
+		return userSex;
 	}
-	/**
-	 * @param userSex 要设置的 userSex
-	 */
 	public void setUserSex(String userSex) {
-		UserSex = userSex;
+		this.userSex = userSex;
 	}
-	/**
-	 * @return userPhone
-	 */
 	public String getUserPhone() {
-		return UserPhone;
+		return userPhone;
 	}
-	/**
-	 * @param userPhone 要设置的 userPhone
-	 */
 	public void setUserPhone(String userPhone) {
-		UserPhone = userPhone;
+		this.userPhone = userPhone;
 	}
-	/**
-	 * @return userAge
-	 */
 	public int getUserAge() {
-		return UserAge;
+		return userAge;
 	}
-	/**
-	 * @param userAge 要设置的 userAge
-	 */
 	public void setUserAge(int userAge) {
-		UserAge = userAge;
+		this.userAge = userAge;
 	}
+
 	
 	
 }
