@@ -1,7 +1,9 @@
 package Network;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
@@ -70,13 +72,20 @@ public class ServNet {
 					String str = conn.GetAdress();
 					System.out.println("客户端连接 ["+str+"]");
 		    		// 建立好连接后，从socket中获取输入流，并建立缓冲区进行读取
-		      /*      InputStream inputStream = socket.getInputStream();
-		            StringBuilder strb = new StringBuilder();
-		            while ((conn.buffCount = inputStream.read(conn.readBuffer)) != -1) {
+		            InputStream inputStream = socket.getInputStream();
+		            InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
+		            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+	                String clientContent = null;
+		          /*StringBuilder strb = new StringBuilder();
+		            while ((strb = inputStream.read(conn.readBuffer)) != -1) {
 		            	strb.append(new String(conn.readBuffer, 0, conn.buffCount, "UTF-8"));
 		            }
-		            System.out.println("get message from client: " + strb);
-		            inputStream.close();*/
+		            System.out.println("get message from client: " + strb);*/
+	                while((clientContent=bufferedReader.readLine()) != null){
+	                	System.out.println(clientContent);
+	                }  
+	                
+		            inputStream.close();
 		            socket.close();
 		            } catch (Exception e) {
 		            e.printStackTrace();
