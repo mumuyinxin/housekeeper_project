@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ServNet {
 
@@ -86,7 +89,7 @@ public class ServNet {
 	                }  
 	                
 		            inputStream.close();
-		            socket.close();
+		         //  socket.close();
 		            } catch (Exception e) {
 		            e.printStackTrace();
 		            }
@@ -94,5 +97,32 @@ public class ServNet {
 		        threadPool.submit(runnable);
 		}
 	 }
+	
+	public void Close() throws IOException {
+		 for(int i = 0; i < conns.length; i++) {
+			 Conn conn = conns[i];
+			 if(conn == null) continue;
+			 if(!conn.isUse) continue;
+		/*	 Lock lock = new ReentrantLock();
+			 lock.lock();
+			 try{
+			     //处理任务*/
+			 conn.Close();
+		/*	 }catch(Exception ex){
+
+			 }finally{
+			     lock.unlock();   //释放锁
+			 }*/
+		 }
+	}
+	
+	public void Send(Socket socket, String str) throws IOException {
+		OutputStream out = null;
+		out = socket.getOutputStream();
+        out.write(str.getBytes());
+        System.out.println("send info to server: "+ str);
+        //发送后断掉连接
+        out.close();
+	}
 }
 
