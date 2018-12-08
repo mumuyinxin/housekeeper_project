@@ -14,10 +14,10 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ServNet {
 
-	public Socket socket;
+//	public Socket socket;
 	public ServerSocket serverSocket;
 	public static Conn[] conns;
-	public static int maxConn = 50;
+	public static int maxConn = 10;
 	//单例
 	public static ServNet instance;
 	public ServNet() {
@@ -44,6 +44,16 @@ public class ServNet {
 		ServNet servNet = new ServNet();
 		servNet.Start(6000);
 		
+		while(true) {
+			System.out.println(conns.length);
+			for(int i = 0; i < conns.length; i++) {
+				System.out.println("start");
+				 Conn conn = conns[i];
+				 if(conn == null) continue;
+				 if(!conn.isUse) continue;
+				 servNet.Send(conns[i].socket, "serverMessage");
+			}
+		}
 	}
 	
 	public void Start(int port) throws IOException {
@@ -55,7 +65,14 @@ public class ServNet {
 		}
 		
 		serverSocket =new ServerSocket(port);
+		
 		Accept();
+		for(int i = 0; i < conns.length; i++) {
+			 Conn conn = conns[i];
+			 if(conn == null) {System.out.println("null");;continue;}
+			 if(!conn.isUse) {System.out.println("notuse");continue;}
+			 Send(conns[i].socket, "serverMessage");
+		}
 	}
 	
 	public void Accept() throws IOException {
@@ -70,10 +87,16 @@ public class ServNet {
 						System.out.println("连接已满");
 						return;
 					}
-					Conn conn = conns[index];
-					conn.Init(socket);
-					String str = conn.GetAdress();
+					conns[index].Init(socket);
+					String str = conns[index].GetAdress();
 					System.out.println("客户端连接 ["+str+"]");
+		    		for(int i = 0; i < conns.length; i++) {
+			   			 Conn conn = conns[i];
+			   			 if(conn == null) {System.out.println("null");;continue;}
+			   			 if(!conn.isUse) {System.out.println("notuse");continue;}
+			   			 Send(conns[i].socket, "serverMessage");
+			   		}
+					
 		    		// 建立好连接后，从socket中获取输入流，并建立缓冲区进行读取
 		            InputStream inputStream = socket.getInputStream();
 		            InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
@@ -89,6 +112,7 @@ public class ServNet {
 	                }  
 	                
 		            inputStream.close();
+		            
 		         //  socket.close();
 		            } catch (Exception e) {
 		            e.printStackTrace();
