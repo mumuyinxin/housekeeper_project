@@ -87,31 +87,33 @@ public class ServNet {
 						System.out.println("连接已满");
 						return;
 					}
-					conns[index].Init(socket);
-					String str = conns[index].GetAdress();
+					Conn conn = conns[index];
+					conn.Init(socket);
+					String str = conn.GetAdress();
 					System.out.println("客户端连接 ["+str+"]");
-		    		for(int i = 0; i < conns.length; i++) {
+					Receive(conn);
+		   /* 		for(int i = 0; i < conns.length; i++) {
 			   			 Conn conn = conns[i];
 			   			 if(conn == null) {System.out.println("null");;continue;}
 			   			 if(!conn.isUse) {System.out.println("notuse");continue;}
 			   			 Send(conns[i].socket, "serverMessage");
-			   		}
+			   		}*/
 					
 		    		// 建立好连接后，从socket中获取输入流，并建立缓冲区进行读取
-		            InputStream inputStream = socket.getInputStream();
+		          /*  InputStream inputStream = socket.getInputStream();
 		            InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
 		            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
 	                String clientContent = null;
-		          /*StringBuilder strb = new StringBuilder();
+		          StringBuilder strb = new StringBuilder();
 		            while ((strb = inputStream.read(conn.readBuffer)) != -1) {
 		            	strb.append(new String(conn.readBuffer, 0, conn.buffCount, "UTF-8"));
 		            }
-		            System.out.println("get message from client: " + strb);*/
+		            System.out.println("get message from client: " + strb);
 	                while((clientContent=bufferedReader.readLine()) != null){
 	                	System.out.println(clientContent);
 	                }  
 	                
-		            inputStream.close();
+		            inputStream.close();*/
 		            
 		         //  socket.close();
 		            } catch (Exception e) {
@@ -121,6 +123,49 @@ public class ServNet {
 		        threadPool.submit(runnable);
 		}
 	 }
+	
+	public void Receive(Conn conn) throws IOException {
+		Socket socket = conn.socket;
+        InputStream inputStream = socket.getInputStream();
+   /*   InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
+        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+        String clientContent = null;	                
+        while((clientContent=bufferedReader.readLine()) != null){
+        	System.out.println(clientContent);
+        }*/
+        int count = 0;
+        while ((count = inputStream.read(conn.readBuffer)) != -1) {
+        	if(count <= 0)
+			{
+				conn.Close();
+				return;
+			}
+        	conn.buffCount += count;
+        }
+        inputStream.close();
+        
+        Receive(conn);
+	}
+	
+	private void ProcessData(Conn conn) {
+		if(conn.buffCount < 4){
+			return;
+		}
+		
+		conn.msgLength = byteArrayToInt(conn.readBuffer, 0);
+		if (conn.buffCount < conn.msgLength + 4) 
+		{
+			return;
+		}
+		
+	}
+	
+	public static int byteArrayToInt(byte[] b ,int start) {   
+		return b[start+3] & 0xFF |   
+		       (b[start+2] & 0xFF) << 8 |   
+		       (b[start+1] & 0xFF) << 16 |   
+		       (b[start] & 0xFF) << 24;   
+	}   
 	
 	public void Close() throws IOException {
 		 for(int i = 0; i < conns.length; i++) {
