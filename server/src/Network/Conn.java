@@ -18,6 +18,7 @@ public class Conn {
 	//沾包处理，计算信息占用缓冲区的长度
 	public byte[] lenBytes = new byte[4];
 	//public User user;
+	public int msgLength;
 	
 	public Conn(){
 		//初始化缓冲区;
