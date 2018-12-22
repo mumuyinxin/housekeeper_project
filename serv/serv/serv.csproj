@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{CDCA5BA6-B0D8-46F5-9FF8-7E959E92213D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>serv</RootNamespace>
+    <AssemblyName>serv</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="MySql.Data">
+      <HintPath>C:\Program Files %28x86%29\MySQL\Connector NET 8.0\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataMgr.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Conn.cs" />
+    <Compile Include="ServNet.cs" />
+    <Compile Include="Sys.cs" />
+    <Compile Include="ProtocolBase.cs" />
+    <Compile Include="ProtocolStr.cs" />
+    <Compile Include="ProtocolBytes.cs" />
+    <Compile Include="HandleConnMsg.cs" />
+    <Compile Include="HandleUserMsg.cs" />
+    <Compile Include="HandleUserEvent.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserData.cs" />
+    <Compile Include="UserTempData.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Properties\New Folder\" />
+  </ItemGroup>
+</Project>
