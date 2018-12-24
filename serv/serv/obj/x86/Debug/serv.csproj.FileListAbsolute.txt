@@ -1,0 +1,10 @@
+G:\Unity3D网络游戏实战\新建文件夹\serv\serv\serv\bin\Debug\serv.exe
+G:\Unity3D网络游戏实战\新建文件夹\serv\serv\serv\bin\Debug\serv.pdb
+G:\Unity3D网络游戏实战\新建文件夹\serv\serv\serv\obj\x86\Debug\serv.csprojResolveAssemblyReference.cache
+G:\Unity3D网络游戏实战\新建文件夹\serv\serv\serv\obj\x86\Debug\serv.exe
+G:\Unity3D网络游戏实战\新建文件夹\serv\serv\serv\obj\x86\Debug\serv.pdb
+G:\Unity3D网络游戏实战\serv\serv\serv\bin\Debug\serv.exe
+G:\Unity3D网络游戏实战\serv\serv\serv\bin\Debug\serv.pdb
+G:\Unity3D网络游戏实战\serv\serv\serv\obj\x86\Debug\serv.csprojResolveAssemblyReference.cache
+G:\Unity3D网络游戏实战\serv\serv\serv\obj\x86\Debug\serv.exe
+G:\Unity3D网络游戏实战\serv\serv\serv\obj\x86\Debug\serv.pdb
